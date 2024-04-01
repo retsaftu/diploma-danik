@@ -1,0 +1,30 @@
+version: '3'
+services:
+  # angular:
+  #   build:
+  #     context: ./angular
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 4200:4200
+  #   volumes:
+  #     - ./angular:/app
+  #   depends_on:
+  #     - nestjs
+
+  # nestjs:
+  #   build:
+  #     context: ./nestjs
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./nestjs:/app
+  #   depends_on:
+  #     - mongodb
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
