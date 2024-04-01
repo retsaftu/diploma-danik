@@ -1,3 +1,7 @@
 # compiled output
-/data
+./data
 /db
+
+
+# igonre /data
+/data
