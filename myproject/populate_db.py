@@ -1,6 +1,5 @@
 import os
 import django
-import random
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.settings')
 django.setup()
@@ -9,7 +8,7 @@ from myapp.models import Product, User, Order
 
 def populate():
     # Создание пользователей
-    user = User.objects.create_user(name='John Doe', email='john@example.com', password='password')
+    user = User.objects.create_user(username='john_doe2', name='John Doe', email='john_doe@example.com', password='password')
 
     # Создание продуктов
     product1 = Product.objects.create(
