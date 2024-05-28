@@ -11,6 +11,7 @@ export class CheckerStratagy extends PassportStrategy(Strategy, 'checker') {
       secretOrKey: 'secret-key',
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
+          console.log(`request?.cookies`, request?.cookies);
           const data = request?.cookies['auth-cookie'];
           if (!data) {
             return null;
