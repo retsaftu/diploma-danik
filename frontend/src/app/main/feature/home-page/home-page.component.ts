@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -7,8 +8,8 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div class="container">
-      <header>
-        <h1>TIMUROSSY</h1>
+      <header class="logo-container">
+        <h1>DANIKROSSY</h1>
         <button class="profile-btn">Профиль</button>
       </header>
       <main>
@@ -16,46 +17,58 @@ import { CommonModule } from '@angular/common';
           <section class="promo">
             <h2>Магазин <span class="highlight">хайповых</span> кроссовок</h2>
             <p>
-              Оригинальные кроссовки не из Китая жопу ставлю. Закажи правую пару
+              Оригинальные кроссовки не из Китая ж**у ставлю. Закажи правую пару
               и получи левую пару бесплатно
             </p>
-            <button class="catalog-btn">Перейти в каталог</button>
+            <button class="catalog-btn" (click)="redirectToProducts()">
+              Перейти в каталог
+            </button>
           </section>
           <section class="sneakers">
-            <img src="assets/images/sneaker.png" alt="Sneaker 1" />
-            <img src="assets/images/sneaker2.png" alt="Sneaker 2" />
+            <img src="assets/images/sneakers.png" alt="Sneakers" />
           </section>
         </div>
-
-        <section class="features">
-          <div class="feature">
-            <span class="icon">👍</span>
-            <p>Ебейшее качество</p>
-          </div>
-          <div class="feature">
-            <span class="icon">⏰</span>
-            <p>Быстрая доставка</p>
-          </div>
-          <div class="feature">
-            <span class="icon">💵</span>
-            <p>Низкие цены</p>
-          </div>
-        </section>
       </main>
+      <section class="features">
+        <div class="feature">
+          <span class="icon">👍</span>
+          <p>Лучшее качество</p>
+        </div>
+        <div class="feature">
+          <span class="icon">⏰</span>
+          <p>Быстрая доставка</p>
+        </div>
+        <div class="feature">
+          <span class="icon">💵</span>
+          <p>Низкие цены</p>
+        </div>
+      </section>
     </div>
   `,
   styles: [
     `
+      .logo-container {
+        color: #fff8f8;
+        font-family: 'Luckiest Guy';
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
       .main-container {
         display: flex;
         // flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        height: 60vh;
       }
       .container {
-        font-family: Arial, sans-serif;
         color: white;
-        background-color: #ff6600;
+        // background-color: #ff6600;
         padding: 20px;
         // border-radius: 10px;
         height: 100vh;
@@ -64,6 +77,8 @@ import { CommonModule } from '@angular/common';
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+        background: linear-gradient(180deg, #fa5a00 0%, #530000 100%);
+        overflow: hidden;
       }
 
       header {
@@ -81,7 +96,26 @@ import { CommonModule } from '@angular/common';
       }
 
       .promo {
-        text-align: center;
+        // text-align: center;
+        font-family: Montserrat;
+        color: #fdf4f4;
+        font-family: Montserrat;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 60%;
+      }
+      .promo h2 {
+        color: #fdf4f4;
+        font-family: Montserrat;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
       }
 
       .highlight {
@@ -89,17 +123,31 @@ import { CommonModule } from '@angular/common';
       }
 
       .catalog-btn {
-        background-color: #00cc00;
         border: none;
-        padding: 10px;
-        border-radius: 5px;
+        padding: 18px 48px;
         cursor: pointer;
+
+        border-radius: 10px;
+        background: #097400;
+        box-shadow: 0px 0px 15px 5px rgba(246, 235, 235, 0.25);
+
+        width: 342px;
+        height: 64px;
+        flex-shrink: 0;
       }
 
       .features {
+        width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         margin-top: 20px;
+
+        color: #fdf4f4;
+        font-family: Montserrat;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
       }
 
       .feature {
@@ -120,16 +168,22 @@ import { CommonModule } from '@angular/common';
         flex-direction: column;
         // gap: -20px;
         position: relative;
-        height: 300px;
+        // height: 300px;
       }
 
-      .sneakers img {
-        // width: 150px;
-        // background: url(<path-to-image>) lightgray 50% / cover no-repeat;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
-          0px 4px 50px 0px rgba(54, 54, 54, 0.54) inset;
-      }
+      // .sneakers img {
+      //   // width: 150px;
+      //   // background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+      //   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+      //     0px 4px 50px 0px rgba(54, 54, 54, 0.54) inset;
+      // }
     `,
   ],
 })
-export class HomePageComponent {}
+export class HomePageComponent {
+  router = inject(Router);
+  redirectToProducts() {
+    this.router.navigate(['/products']);
+    // Add your redirect logic here
+  }
+}

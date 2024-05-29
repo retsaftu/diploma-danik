@@ -7,7 +7,7 @@ import { HomePageComponent } from './main/feature/home-page/home-page.component'
   selector: 'app-root',
   standalone: true,
   template: `
-    <app-home-page></app-home-page>
+    <!-- <app-home-page></app-home-page> -->
     <!--The content below is only a placeholder and can be replaced.-->
 
     <router-outlet></router-outlet>

@@ -7,10 +7,10 @@ function makeUrl(endpoint) {
 const PROXY_CONFIG = [
   {
     context: ["/backend/**"],
-    target: makeUrl({ protocol: "http", host: "localhost", port: 3000 }),
+    target: makeUrl({ protocol: "http", host: "localhost", port: 8000 }),
     pathRewrite: {
       "^/backend":
-        makeUrl({ protocol: "http", host: "localhost", port: 3000 }) + "/",
+        makeUrl({ protocol: "http", host: "localhost", port: 8000 }) + "/",
     },
   },
 ];
