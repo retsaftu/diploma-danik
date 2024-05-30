@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
     <div class="container">
       <header class="logo-container">
         <h1>DANIKROSSY</h1>
-        <button class="profile-btn">Профиль</button>
+        <button class="profile-btn" (click)="redirectToLogin()">Профиль</button>
       </header>
       <main>
         <div class="main-container">
@@ -181,6 +181,9 @@ import { Router } from '@angular/router';
   ],
 })
 export class HomePageComponent {
+  redirectToLogin() {
+    this.router.navigate(['/auth']);
+  }
   router = inject(Router);
   redirectToProducts() {
     this.router.navigate(['/products']);

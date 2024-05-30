@@ -1,9 +1,6 @@
-from rest_framework import generics, permissions
-from .models import Product, Order
-from .serializers import ProductSerializer, UserSerializer, OrderSerializer, CreateOrderSerializer
-from django.contrib.auth import get_user_model
-
-User = get_user_model()
+from rest_framework import generics
+from .models import Product, User, Order
+from .serializers import ProductSerializer, UserSerializer, OrderSerializer, CreateOrderSerializer, RegisterSerializer
 
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
@@ -32,11 +29,4 @@ class CreateOrderView(generics.CreateAPIView):
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-class LoginView(generics.GenericAPIView):
-    serializer_class = UserSerializer
-
-    def post(self, request, *args, **kwargs):
-        # Реализуй логику аутентификации здесь
-        pass
+    serializer_class = RegisterSerializer

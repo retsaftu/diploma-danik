@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { RedirectGuard } from './guard/redirect.guard';
 
 export const routes: Routes = [
   // {
@@ -28,8 +27,13 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'products',
+    path: 'cart',
     loadComponent: () =>
-      import('./product/list/list.component').then((m) => m.ListComponent),
+      import('./main/feature/cart.component').then((m) => m.CartComponent),
+  },
+  {
+    path: 'orders',
+    loadComponent: () =>
+      import('./main/feature/orders.component').then((m) => m.OrdersComponent),
   },
 ];
